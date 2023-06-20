@@ -11,10 +11,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :users, only: %i[index show] do
-    resources :foods, only: %i[index show new create] do
-      resources :recipes, only: %i[index show new create] do
-        resources :recipes_food, only: %i[index show new create]
-      end
+    resources :foods, only: %i[index show new create] 
+    resources :recipes, only: %i[index show new create destroy] do
+      resources :recipes_food, only: %i[index show new create]
     end
   end
 end

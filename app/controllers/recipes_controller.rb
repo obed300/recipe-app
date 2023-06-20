@@ -37,4 +37,10 @@ class RecipesController < ApplicationController
             redirect_to recipes_path, notice: 'Recipe could not be deleted'   
         end 
     end
+
+    private 
+
+    def recipe_params
+        params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description)
+    end
 end

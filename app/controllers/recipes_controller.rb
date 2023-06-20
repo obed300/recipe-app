@@ -22,19 +22,19 @@ class RecipesController < ApplicationController
         @recipe = current_user.recipes.new(recipe_params)
 
         if @recipe.save
-            redirect_to recipes_path, notice: 'Recipes created successfully'
+            redirect_to user_recipes_path, notice: 'Recipes created successfully'
         else
            render :new
         end     
     end
     
     def destroy
-        @recipe = current_user.recipe.find(params[:id])
+        @recipe = current_user.recipes.find(params[:id])
 
         if @recipe.destroy
-            redirect_to recipes_path, notice: 'Recipe has been removed'
+            redirect_to user_recipes_path, notice: 'Recipe has been removed'
         else
-            redirect_to recipes_path, notice: 'Recipe could not be deleted'   
+            redirect_to user_recipes_path, notice: 'Recipe could not be deleted'   
         end 
     end
 

@@ -44,3 +44,16 @@
     flex-direction: column;
     row-gap: 0.5rem;
 }
+
+.add-food-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.food-form {
+   display: flex;
+   flex-direction: column;
+   row-gap: 0.5rem;
+}

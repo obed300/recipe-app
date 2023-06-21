@@ -51,4 +51,36 @@
       <% end %> 
     </tbody>
   </table>
+
 <div>
+      <% if current_user.id == @recipe.user_id %>
+        <% if @recipe.public %>
+          <p>Current Status: Public</p>
+          <%= button_to "Change public to private", recipe_path(@recipe), method: :patch%>
+        <% else %>
+          <p>Current Status: Private</p>
+          <%= button_to "Change public to public", recipe_path(@recipe), method: :patch%>
+        <% end %>
+      <% end %>
+    </div>
+
+
+<div>
+
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const checkbox = document.querySelector('input[type="checkbox"]');
+      const statusText = document.querySelector('div p');
+      const toggleButton = document.querySelector('button[type="submit"]');
+
+      checkbox.addEventListener('change', function() {
+        if (checkbox.checked) {
+          statusText.textContent = 'Current Status: Public';
+          toggleButton.textContent = 'Change public to private';
+        } else {
+          statusText.textContent = 'Current Status: Private';
+          toggleButton.textContent = 'Change private to public';
+        }
+      });
+    });
+</script>

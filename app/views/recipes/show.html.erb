@@ -1,5 +1,17 @@
-<div>
+<div class= 'main-div'>
   <h1><%= @recipe.name %></h1>
+
+  <div class='private-public-change'>
+      <% if current_user.id == @recipe.user_id %>
+        <% if @recipe.public %>
+          <p>Current Status: Public</p>
+          <%= button_to "Change public to private", recipe_path(@recipe), method: :patch%>
+        <% else %>
+          <p>Current Status: Private</p>
+          <%= button_to "Change public to public", recipe_path(@recipe), method: :patch%>
+        <% end %>
+      <% end %>
+    </div>
 
  <section>
   <% if params[:toggle_public] %>
@@ -51,18 +63,6 @@
       <% end %> 
     </tbody>
   </table>
-
-<div>
-      <% if current_user.id == @recipe.user_id %>
-        <% if @recipe.public %>
-          <p>Current Status: Public</p>
-          <%= button_to "Change public to private", recipe_path(@recipe), method: :patch%>
-        <% else %>
-          <p>Current Status: Private</p>
-          <%= button_to "Change public to public", recipe_path(@recipe), method: :patch%>
-        <% end %>
-      <% end %>
-    </div>
 
 
 <div>

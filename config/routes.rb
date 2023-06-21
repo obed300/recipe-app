@@ -4,12 +4,10 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  root 'pages#hello'
-  get '/greeting', to: 'custom_pages#hello'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  # root "articles#index"
+  root "foods#index"
   Rails.application.routes.draw do
     patch 'recipes/:id', to: 'recipes#update', as: 'recipe'
 

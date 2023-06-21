@@ -36,6 +36,13 @@ class RecipesController < ApplicationController
     end
   end
 
+  def update
+    @recipe = Recipe.find(params[:id])
+    @recipe.public = !@recipe.public
+    @recipe.save
+    redirect_to recipe_path(@recipe), notice: 'Recipe status updated'
+  end
+
   private
 
   def recipe_params

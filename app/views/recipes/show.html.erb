@@ -1,5 +1,17 @@
-<div>
+<div class= 'main-div'>
   <h1><%= @recipe.name %></h1>
+
+  <div class='private-public-change'>
+      <% if current_user.id == @recipe.user_id %>
+        <% if @recipe.public %>
+          <p>Current Status: Public</p>
+          <%= button_to "Change public to private", recipe_path(@recipe), method: :patch%>
+        <% else %>
+          <p>Current Status: Private</p>
+          <%= button_to "Change public to public", recipe_path(@recipe), method: :patch%>
+        <% end %>
+      <% end %>
+    </div>
 
  <section>
   <% if params[:toggle_public] %>
@@ -18,11 +30,12 @@
   </section>
 
 <section class="container-actions">
-  <%= link_to 'Generate Shop List', users_shopping_list_path(@recipe.user), class: 'link_action' %>
-  <% if @recipe.user == current_user %>
-    <%= link_to 'Add Ingredient', new_recipe_food_path(@recipe), class: 'link_action' %>
+  <%= link_to 'Generate Shop List', user_users_shopping_list_path(@recipe.user), class: 'link_action' %>
+    <% if @recipe.user == current_user %>
+    <%= link_to 'Add Ingredient', new_user_recipe_food_path(@recipe.user,@recipe), class: 'link_action' %>
   <% end %>  
 </section>
+
 
 
   <table class="table-food">
@@ -50,4 +63,20 @@
       <% end %> 
     </tbody>
   </table>
+
+
 <div>
+
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      checkbox.addEventListener('change', function() {
+        if (checkbox.checked) {
+          statusText.textContent = 'Current Status: Public';
+          toggleButton.textContent = 'Change public to private';
+        } else {
+          statusText.textContent = 'Current Status: Private';
+          toggleButton.textContent = 'Change private to public';
+        }
+      });
+    });
+</script>

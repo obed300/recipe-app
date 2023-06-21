@@ -13,3 +13,34 @@
  *= require_tree .
  *= require_self
  */
+
+* {
+    margin: 2px;
+    padding: 2px;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.section-recipe {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-recipe {
+    border: 1px solid gray;
+    width: 35%;
+    padding: 1rem;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+}
+
+.recipe-item {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}

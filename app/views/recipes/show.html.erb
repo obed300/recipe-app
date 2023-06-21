@@ -19,8 +19,8 @@
 
 <section class="container-actions">
   <%= link_to 'Generate Shop List', user_users_shopping_list_path(@recipe.user), class: 'link_action' %>
-  <% if @recipe.user == current_user %>
-    <%# <%= link_to 'Add Ingredient', new_recipe_food_path(@recipe), class: 'link_action' %> %>
+    <% if @recipe.user == current_user %>
+    <%= link_to 'Add Ingredient', new_user_recipe_food_path(@recipe.user,@recipe), class: 'link_action' %>
   <% end %>  
 </section>
 

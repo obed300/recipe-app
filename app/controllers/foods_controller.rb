@@ -15,7 +15,7 @@ class FoodsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @food = @user.foods.new(food_params)
-    
+
     respond_to do |format|
       format.html do
         if @food.save

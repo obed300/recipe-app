@@ -92,7 +92,6 @@ class RecipesController < ApplicationController
       render :edit
     end
   end
-  
 
   private
 

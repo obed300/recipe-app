@@ -73,7 +73,7 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.save
-        format.html { redirect_to user_food_recipes_path(@user), notice: 'Recipe created successfully' }
+        format.html { redirect_to user_recipes_path(@user), notice: 'Recipe created successfully' }
       else
         format.html { render :new }
       end
@@ -84,9 +84,9 @@ class RecipesController < ApplicationController
     @recipe = current_user.recipes.find(params[:id])
 
     if @recipe.destroy
-      redirect_to user_food_recipes_path, notice: 'Recipe has been removed'
+      redirect_to user_recipes_path, notice: 'Recipe has been removed'
     else
-      redirect_to user_food_recipes_path, notice: 'Recipe could not be deleted'
+      redirect_to user_recipes_path, notice: 'Recipe could not be deleted'
     end
   end
 

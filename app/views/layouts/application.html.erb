@@ -15,9 +15,10 @@
     <ul>
       <li><%= link_to "Home", root_path %></li>
       <% if user_signed_in? %>
-        <li><%= link_to "New Food", new_user_food_path(current_user) %></li>
-        <li><%= link_to "Food", user_food_path(current_user, current_user.id) %></li>
-        <li><%= link_to "Recipe", new_user_food_recipe_path(current_user, current_user.id) %></li>
+        <li><%= link_to "Create Food", new_user_food_path(current_user) %></li>
+        <li><%= link_to "List food", user_foods_path(current_user, current_user.id) %></li>
+        <li><%= link_to "Create recipe", new_user_recipe_path(current_user, current_user.id) %></li>
+        <li><%= link_to "List recipes", user_recipes_path(current_user, current_user.id) %></li>
       <% end %>
     </ul>
   </nav>

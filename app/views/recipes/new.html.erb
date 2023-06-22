@@ -2,7 +2,7 @@
 
   <h2>Add New Recipe</h2><br>
 
-  <%= form_with model: @recipe,url:user_food_recipes_path, method: :post, local: true do |f| %>
+  <%= form_with model: @recipe,url:user_recipes_path, method: :post, local: true do |f| %>
 
   <% if @recipe.errors.any? %>
       <div>

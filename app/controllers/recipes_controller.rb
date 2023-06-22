@@ -36,13 +36,6 @@
 #     end
 #   end
 
-#   def update
-#     @recipe = Recipe.find(params[:id])
-#     @recipe.public = !@recipe.public
-#     @recipe.save
-#     redirect_to recipe_path(@recipe), notice: 'Recipe status updated'
-#   end
-
 #   private
 
 #   def recipe_params
@@ -89,6 +82,17 @@ class RecipesController < ApplicationController
       redirect_to user_recipes_path, notice: 'Recipe could not be deleted'
     end
   end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+    if @recipe.update(public: !@recipe.public)
+      redirect_to user_recipe_path(@recipe.user, @recipe), notice: 'Recipe status updated'
+
+    else
+      render :edit
+    end
+  end
+  
 
   private
 

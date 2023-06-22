@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   resources :users, only: %i[index show] do
     resources :foods, only: %i[index show new create destroy]
-    resources :recipes, only: %i[index show new create destroy] do
+    resources :recipes, only: %i[index show new create destroy update] do
       resources :recipes_foods, only: %i[index show new create destroy]
     end
   end

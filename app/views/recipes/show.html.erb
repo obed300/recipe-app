@@ -2,15 +2,16 @@
   <h1><%= @recipe.name %></h1>
 
   <div class='private-public-change'>
-      <% if current_user.id == @recipe.user_id %>
-        <% if @recipe.public %>
-          <p>Current Status: Public</p>
-          <%= button_to "Change public to private", recipe_path(@recipe), method: :patch%>
-        <% else %>
-          <p>Current Status: Private</p>
-          <%= button_to "Change public to public", recipe_path(@recipe), method: :patch%>
-        <% end %>
-      <% end %>
+  <% if current_user.id == @recipe.user_id %>
+  <% if @recipe.public %>
+    <p>Current Status: Public</p>
+    <%= button_to "Change public to private", user_recipe_path(@recipe.user, @recipe), method: :patch %>
+  <% else %>
+    <p>Current Status: Private</p>
+    <%= button_to "Change public to public", user_recipe_path(@recipe.user, @recipe), method: :patch %>
+  <% end %>
+<% end %>
+
     </div>
 
  <section>
@@ -30,9 +31,9 @@
   </section>
 
 <section class="container-actions">
-  <%= link_to 'Generate Shop List', user_users_shopping_list_path(@recipe.user), class: 'link_action' %>
+  <%# <%= link_to 'Generate Shop List', url_for(controller: 'users', action: 'shopping_list', id: @recipe.user.id), class: 'link_action' %>
     <% if @recipe.user == current_user %>
-    <%= link_to 'Add Ingredient', new_user_recipe_food_path(@recipe.user,@recipe), class: 'link_action' %>
+    <%# <%= link_to 'Add Ingredient', new_user_recipe_food_path(@recipe.user,@recipe), class: 'link_action' %> 
   <% end %>  
 </section>
 

@@ -10,6 +10,19 @@
   </head>
 
   <body>
+  <header>
+  <nav class="navigation-menu">
+    <ul>
+      <li><%= link_to "Home", root_path %></li>
+      <% if user_signed_in? %>
+        <li><%= link_to "New Food", new_user_food_path(current_user) %></li>
+        <li><%= link_to "Food", user_food_path(current_user, current_user.id) %></li>
+        <li><%= link_to "Recipe", new_user_food_recipe_path(current_user, current_user.id) %></li>
+      <% end %>
+    </ul>
+  </nav>
+</header>
+
       <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
 

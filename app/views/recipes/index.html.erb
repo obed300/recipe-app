@@ -1,17 +1,15 @@
 <div class="section-recipe">
     <button class="food-btn">
-       <%= link_to 'Add Recipe', new_user_recipe_path %>
+       <%= link_to 'Add Recipe', new_user_food_recipe_path %>
     </button>
 
     <% @recipes.each do |recipe|%>
       <div class="container-recipe">
          <div class="recipe-item">
-            <p> <%=link_to recipe.name, user_recipe_path(recipe.user,recipe)%></p>
-            <%= button_to 'Remove', user_recipe_path(recipe.user,recipe), method: :delete %>
+            <p> <%=link_to recipe.name, user_food_recipes_path(recipe.user,recipe)%></p>
+            <%= button_to 'Remove', user_food_recipes_path(recipe.user,recipe), method: :delete %>
          </div>
-           
            <p class="text-recipe"><%= recipe.description%></p>
       </div>
-
     <% end %>
 <div>

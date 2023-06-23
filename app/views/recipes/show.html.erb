@@ -30,21 +30,25 @@
    <p><%= @recipe.description %></p>
   </section>
 
+     
+  
+
+
+   
 <section class="container-actions">
-  <%# <%= link_to 'Generate Shop List', url_for(controller: 'users', action: 'shopping_list', id: @recipe.user.id), class: 'link_action' %>
+  <%= link_to 'Generate Shop List', url_for(controller: 'users', action: 'shopping_list', id: @recipe.user.id), class: 'link_action' %> 
     <% if @recipe.user == current_user %>
-    <%# <%= link_to 'Add Ingredient', new_user_recipe_food_path(@recipe.user,@recipe), class: 'link_action' %> 
+    <%= link_to 'Add Ingredient',new_user_recipe_recipe_food_path(@recipe.user, @recipe), class: 'link_action' %>
   <% end %>  
 </section>
 
 
-
-  <table class="table-food">
+<div class="table-food">
     <thead>
       <tr>
        <th>Food</th>
-       <th>Index</th>
        <th>Quantity</th>
+        <th>Value</th>
        <th>Actions</th>
       </tr>
     </thead>
@@ -58,13 +62,12 @@
         <td><%= food.price * recipe_food.quantity %></td>
         <td>
           <%= link_to 'Modify', '#', class: 'action_link' %>
-          <%= link_to 'Delete', recipe_recipe_food_path(@recipe.id, recipe_food.id), method: :delete, data: { confirm: 'Are you sure to delete the food'}, class: 'link_action' %>
+          <%= button_to 'Delete',  user_recipe_recipe_food_path(@recipe.user, @recipe,recipe_food.id), method: :delete, data: { confirm: 'Are you sure to delete the food'}, class: 'link_action' %>
         </td>
        </tr>
       <% end %> 
     </tbody>
-  </table>
-
+  </div>
 
 <div>
 

@@ -19,6 +19,7 @@
         <li><%= link_to "List food", user_foods_path(current_user, current_user.id) %></li>
         <li><%= link_to "Create recipe", new_user_recipe_path(current_user, current_user.id) %></li>
         <li><%= link_to "List recipes", user_recipes_path(current_user, current_user.id) %></li>
+        <li><%= link_to "Public recipes", public_recipes_path(current_user, current_user.id) %></li>
       <% end %>
     </ul>
   </nav>

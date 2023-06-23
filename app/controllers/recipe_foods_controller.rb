@@ -1,46 +1,42 @@
-class RecipesController < ApplicationController
-
-    # recipes#show ___ GET /recipes/:id
-    def show
-      @recipe = Recipe.includes(:foods).find(params[:id])
-      @foods = @recipe.foods
-    end
-  
-    def index
-      @recipes = current_user.recipes
-    end
-  
+class RecipeFoodsController < ApplicationController
+    # RecipeFoods#new ____   GET    /recipes/:recipe_id/ingredients/new
     def new
-      @recipe = Recipe.new
+      @recipe = Recipe.find(params[:recipe_id])
+      @foods = Food.all
+      @recipe_food = @recipe.recipe_foods.new
     end
   
+    # RecipeFoods#create ____  POST   /recipes/:recipe_id/ingredients
     def create
-      @recipe = current_user.recipes.new(recipe_params)
+      @recipe = Recipe.find(params[:recipe_id])
+      @recipe_food = RecipeFood.new(recipe_food_params)
   
-      if @recipe.save
-        redirect_to recipes_path, notice: 'Recipes created successfully'
+      if @recipe_food.save
+        flash[:success] = 'Ingredient added successfully'
+        redirect_to user_recipe_path(current_user,@recipe)
       else
+        flash[:error] = 'Error adding ingredient'
         render :new
       end
     end
   
+    # recipe_recipe_food DELETE /recipes/:recipe_id/recipe_foods/:id
     def destroy
-      @recipe = current_user.recipes.find(params[:id])
+      @recipe_food = RecipeFood.find(params[:id])
   
-      if @recipe.destroy
-        redirect_to recipes_path, notice: 'Recipe has been removed'
+      if @recipe_food.destroy
+        flash[:success] = 'Ingredient removed successfully'
+        redirect_to user_recipe_path(current_user,@recipe_food.recipe)
       else
-        redirect_to recipes_path, notice: 'Recipes could not be deleted'
+        flash[:error] = 'Error removing ingredient'
+        redirect_to root
       end
-    end
-  
-    def public_recipes
-      @recipes = Recipe.where(public: true).includes(:user, recipe_foods: :food).order(created_at: :desc)
     end
   
     private
   
-    def recipe_params
-      params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description)
+    def recipe_food_params
+      params.require(:recipe_food).permit(:recipe_id, :food_id, :quantity)
     end
   end
+  

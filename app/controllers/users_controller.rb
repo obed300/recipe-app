@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @general_foods = current_user.foods
 
     @missing_foods = calculate_missing_foods
-    @total_count = @missing_foods.length
+    @total_count =  @missing_foods.length
     @total_price = calculate_total_price(@missing_foods)
   end
 
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
   def calculate_missing_foods
     missing_foods = []
-
+   
     @all_recipes.each do |recipe|
       recipe.foods.each do |food|
         general_food = @general_foods.find_by(name: food.name)

@@ -1,5 +1,7 @@
+<%= stylesheet_link_tag 'food_index' %>
+
 <%= link_to new_user_food_path(user_id: current_user.id), class: "add-btn" do %>
-    <%= "Add Food" %>
+  <%= "Add Food" %>
 <% end %>
 
 <table>
@@ -18,7 +20,7 @@
         <td><%= food.measurement_unit %></td>
         <td>$<%= food.price %></td>
         <td>
-           <%= button_to "Delete", user_food_path(user_id: current_user.id, id: food.id), method: :delete, data: { confirm: "Are you sure you want to delete this food?" }, class: "delete-btn" %>
+          <%= button_to "Delete", user_food_path(user_id: current_user.id, id: food.id), method: :delete, data: { confirm: "Are you sure you want to delete this food?" }, class: "delete-btn" %>
         </td>
       </tr>
     <% end %>

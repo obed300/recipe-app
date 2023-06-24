@@ -1,0 +1,93 @@
+/* recipe_show.css */
+
+.main-div {
+    margin: 20px;
+  }
+  
+  .recipe-name {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .private-public-change {
+    margin-bottom: 20px;
+  }
+  
+  .status {
+    font-weight: bold;
+  }
+  
+  .change-status-btn {
+    background-color: #f5f5f5;
+    border: none;
+    padding: 5px 10px;
+    margin-top: 5px;
+    cursor: pointer;
+  }
+  
+  .toggle-public-btn {
+    background-color: #f5f5f5;
+    border: none;
+    padding: 5px 10px;
+    margin-top: 5px;
+    cursor: pointer;
+  }
+  
+  .detail-recipe {
+    margin-bottom: 20px;
+  }
+  
+  .preparation-time,
+  .cooking-time {
+    margin: 5px 0;
+  }
+  
+  .description {
+    margin-bottom: 10px;
+  }
+  
+  .container-actions {
+    margin-bottom: 20px;
+  }
+  
+  .link-action {
+    background-color: #f5f5f5;
+    border: none;
+    padding: 5px 10px;
+    margin-top: 5px;
+    cursor: pointer;
+  }
+  
+  .table-food {
+    margin-bottom: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th,
+  td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+  }
+  
+  .action-link {
+    margin-right: 5px;
+  }
+  
+  .link-action.delete-btn {
+    background-color: #f5f5f5;
+    border: none;
+    padding: 5px 10px;
+    margin-top: 5px;
+    cursor: pointer;
+  }
+  

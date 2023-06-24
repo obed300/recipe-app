@@ -1,0 +1,83 @@
+<%= stylesheet_link_tag 'recipe_show' %>
+
+<div class='main-div'>
+  <h1 class='recipe-name'><%= @recipe.name %></h1>
+
+  <div class='private-public-change'>
+    <% if current_user.id == @recipe.user_id %>
+      <% if @recipe.public %>
+        <p class='status'>Current Status: Public</p>
+        <%= button_to "Change public to private", user_recipe_path(@recipe.user, @recipe), method: :patch, class: 'change-status-btn' %>
+      <% else %>
+        <p class='status'>Current Status: Private</p>
+        <%= button_to "Change public to public", user_recipe_path(@recipe.user, @recipe), method: :patch, class: 'change-status-btn' %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <section>
+    <% if params[:toggle_public] %>
+      <% if @recipe.public %>
+        <%= link_to 'Make Private', toggle_public_recipe_path(@recipe), method: :patch, class: 'toggle-public-btn' %>
+      <% else %>
+        <%= link_to 'Make Public', toggle_public_recipe_path(@recipe), method: :patch, class: 'toggle-public-btn' %>
+      <% end %>
+    <% end %>
+  </section>
+
+  <section class="detail-recipe">
+    <p class='preparation-time'>Preparation Time: <%= @recipe.preparation_time %> hour</p>
+    <p class='cooking-time'>Cooking Time: <%= @recipe.cooking_time %> Hour</p>
+    <p class='description'><%= @recipe.description %></p>
+  </section>
+
+  <section class="container-actions">
+    <%= link_to 'Generate Shop List', url_for(controller: 'users', action: 'shopping_list', id: @recipe.user.id), class: 'link-action' %>
+    <% if @recipe.user == current_user %>
+      <%= link_to 'Add Ingredient', new_user_recipe_recipe_food_path(@recipe.user, @recipe), class: 'link-action' %>
+    <% end %>
+  </section>
+
+  <div class="table-food">
+    <table>
+      <thead>
+        <tr>
+          <th>Food</th>
+          <th>Quantity</th>
+          <th>Value</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @recipe.recipe_foods.each do |recipe_food| %>
+          <% food = recipe_food.food %>
+          <tr>
+            <td><%= food.name %></td>
+            <td><%= recipe_food.quantity %></td>
+            <td><%= food.price * recipe_food.quantity %></td>
+            <td>
+              <%= link_to 'Modify', '#', class: 'action-link' %>
+              <%= button_to 'Delete', user_recipe_recipe_food_path(@recipe.user, @recipe, recipe_food.id), method: :delete, data: { confirm: 'Are you sure to delete the food' }, class: 'link-action' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      checkbox.addEventListener('change', function() {
+        if (checkbox.checked) {
+          statusText.textContent = 'Current Status: Public';
+          toggleButton.textContent = 'Change public to private';
+        } else {
+          statusText.textContent = 'Current Status: Private';
+          toggleButton.textContent = 'Change private to public';
+        }
+      });
+    });
+</script>

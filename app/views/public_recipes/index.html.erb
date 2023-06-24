@@ -1,0 +1,19 @@
+<%= stylesheet_link_tag 'public_index' %>
+
+<section class="public-wrapper">
+  <h1>Public Recipes</h1>
+  <br>
+  <% @public_recipes.each_with_index do |recipe, index| %>
+    <div class="public-container">
+      <div>
+        <h2><%= link_to user_recipe_path(recipe.user, recipe) do %>
+          <%= recipe.name %>
+        <% end %></h2>
+        <p>By: <%= recipe.user.name %></p>
+      </div>
+      <div>
+        <p>Total food items: <%= recipe.recipe_foods.count %></p>
+      </div>
+    </div>
+  <% end %>
+</section>
